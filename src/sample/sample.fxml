@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
 <GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <columnConstraints>
@@ -14,6 +16,35 @@
       <RowConstraints />
    </rowConstraints>
    <children>
-      <Pane prefHeight="600.0" prefWidth="800.0" GridPane.rowIndex="1" />
+      <Pane prefHeight="600.0" prefWidth="800.0" GridPane.rowIndex="1">
+         <children>
+            <Pane prefHeight="50.0" prefWidth="800.0" style="-fx-background-color: #111447;">
+               <children>
+                  <Label layoutX="550.0" layoutY="15.0" text="Estadisticas" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="130.0" layoutY="15.0" text="Inicio" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="300.0" layoutY="15.0" text="Departamentos" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="440.0" layoutY="15.0" text="Remitentes" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font></Label>
+                  <Label layoutX="210.0" layoutY="15.0" text="Oficios" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+               </children></Pane>
+         </children></Pane>
    </children>
 </GridPane>
