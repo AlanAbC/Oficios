@@ -1,14 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="Estadisticas"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+    <columnConstraints>
+        <ColumnConstraints />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints />
+        <RowConstraints />
+    </rowConstraints>
+    <children>
+        <Pane prefHeight="600.0" prefWidth="800.0" GridPane.rowIndex="1">
+            <children>
+                <Label layoutX="25.0" layoutY="10.0" text="Total de Folios:" textFill="BLACK">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+            <Label layoutX="100.0" layoutY="70.0" text="Folios por Departamentos">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="515.0" layoutY="70.0" text="Folios por Remitentes">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <ListView layoutX="25.0" layoutY="120.0" prefHeight="400.0" prefWidth="350.0" />
+            <ListView layoutX="425.0" layoutY="120.0" prefHeight="400.0" prefWidth="350.0" />
+            <DatePicker layoutX="600.0" layoutY="10.0" />
+            </children></Pane>
+    </children>
+</GridPane>
