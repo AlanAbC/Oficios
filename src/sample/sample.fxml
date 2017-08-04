@@ -40,5 +40,10 @@
                 </Label>
             </children>
         </Pane>
+        <Pane fx:id="contenedor" layoutY="50.0" prefHeight="550.0" prefWidth="800.0">
+            <children>
+
+            </children>
+        </Pane>
    </children>
 </Pane>
