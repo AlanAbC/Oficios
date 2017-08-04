@@ -5,22 +5,29 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class Main extends Application {
 
-    // Variables de Ecenas
+    // Variables de los Pane
+    private Pane contenedor;
+    private Pane InicioPane;
+    private Pane oficioPane;
+    private Pane departamentoPane;
+    private Pane remitentePane;
+    private Pane estadisticaPane;
 
-    // Variables de Menu
+    // Variables de los elementos del Pane Menu
     private Label inicio;
     private Label oficios;
     private Label departamentos;
     private Label remitentes;
     private Label estadisticas;
 
-    // Variables de Inicio
+    // Variables de los elementos del Pane Inicio
     private TextField folioInicio;
     private DatePicker fechaInicio;
     private ComboBox departamentoInicio;
@@ -30,13 +37,41 @@ public class Main extends Application {
     private Button archivoInicio;
     private Button guardarInicio;
 
-    // Variables de Oficios
+    // Variables de los elementos del Pane Oficio
+    private ListView oficiosOficio;
+    private TextField folioOficio;
+    private DatePicker fechaOficio;
+    private ComboBox departamentoOficio;
+    private ComboBox remitenteOficio;
+    private TextArea descripcionOficio;
+    private TextArea observacionesOficio;
+    private Button editarOficio;
+    private Button eliminarOficio;
 
-    // Variables de Departamentos
+    // Variables de los elementos del Pane Departamento
+    private ListView departamentosDepartamento;
+    private TextField agregarNombreDepartamento;
+    private TextField agregarEncargadoDepartamento;
+    private Button agregarDepartamento;
+    private TextField editarNombreDepartamento;
+    private TextField editarEncargadoDepartamento;
+    private Button editarDepartamento;
+    private Button eliminarDepartamento;
 
-    // Variables de Remitentes
+    // Variables de los elementos del Pane Remitentes
+    private ListView remitentesRemitente;
+    private TextField agregarNombreRemitente;
+    private TextField agregarEncargadoRemitente;
+    private Button agregarRemitente;
+    private TextField editarNombreRemitente;
+    private TextField editarEncargadoRemitente;
+    private Button editarRemitente;
+    private Button eliminarRemitente;
 
-    // Variables de Estadisticas
+    // Variables de los elementos del Pane Estadisticas
+    private DatePicker filtroEstadistica;
+    private ListView departamentosEstadistica;
+    private ListView remitentesEstadistica;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
