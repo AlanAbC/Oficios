@@ -271,8 +271,6 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-        MySQL db = new MySQL();
-        db.MySQLConnect();
         launch(args);
     }
 }
