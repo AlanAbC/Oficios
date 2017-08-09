@@ -1,6 +1,8 @@
 package sample;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
@@ -34,7 +36,7 @@ public class Main extends Application {
     // Variables de los elementos del Pane Inicio
     private TextField folioInicio;
     private DatePicker fechaInicio;
-    private ComboBox departamentoInicio;
+    private ComboBox<String> departamentoInicio;
     private ComboBox remitenteInicio;
     private TextArea descripcionInicio;
     private TextArea observacionesInicio;
@@ -77,6 +79,8 @@ public class Main extends Application {
     private ListView departamentosEstadistica;
     private ListView remitentesEstadistica;
 
+    //Declaracion objetos
+    private static DB db;
     @Override
     public void start(Stage primaryStage) throws Exception{
         // Obtencion del fxml principal
@@ -158,6 +162,9 @@ public class Main extends Application {
 
         //Llamado de funcion over menu
         overMenu();
+
+        //Llenado combo departamentos
+        llenarComboDeartamentos();
     }
 
     public void accionMenu(){
@@ -271,14 +278,25 @@ public class Main extends Application {
     public void overBotones(){
 
     }
+    //Funcion para llenar comboBox Departamentos
+    public void llenarComboDeartamentos(){
+        ObservableList<String> options =
+                FXCollections.observableArrayList(
+                        "Option 1",
+                        "Option 2",
+                        "Option 3"
+                );
+        departamentoInicio.setItems(options);
+
+    }
 
     public static void main(String[] args) {
-        DB bd = new DB();
-        ArrayList<Departamento> d = bd.getDepartamentos();
+        db = new DB();
+        ArrayList<Departamento> d = db.getDepartamentos();
         for (Departamento dep: d) {
             System.out.println(dep.getId() + "\n" + dep.getNombre() + "\n" + dep.getResponsable() + "\n");
         }
-        ArrayList<Remitente> r = bd.getRemitentes();
+        ArrayList<Remitente> r = db.getRemitentes();
         for (Remitente re: r) {
             System.out.println(re.getId() + "\n" + re.getNombre() + "\n" + re.getResponsable() + "\n");
         }
