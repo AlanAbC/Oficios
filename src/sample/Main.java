@@ -4,7 +4,6 @@ import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -12,9 +11,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-
-import java.util.List;
 
 public class Main extends Application {
 
@@ -94,12 +90,14 @@ public class Main extends Application {
 
         //Asignacion de variables
         contenedor=(Pane)scene.lookup("#contenedor");
+
         //variables menu
         inicio=(Label)scene.lookup("#inicio");
         oficios=(Label)scene.lookup("#oficios");
         departamentos=(Label)scene.lookup("#departamentos");
         remitentes=(Label)scene.lookup("#remitentes");
         estadisticas=(Label)scene.lookup("#estadisticas");
+
         //variables inicio
         folioInicio=(TextField) scene.lookup("#folioInicio");
         fechaInicio=(DatePicker)scene.lookup("#fechaInicio");
@@ -108,6 +106,7 @@ public class Main extends Application {
         descripcionInicio=(TextArea) scene.lookup("#descripcionInicio");
         observacionesInicio=(TextArea) scene.lookup("#observacionesInicio");
         guardarInicio=(Button) scene.lookup("#guardarInicio");
+
         //variables oficio
         oficiosOficio=(ListView)scene.lookup("#oficiosOficio");
         folioOficio=(TextField) scene.lookup("#folioOficio");
@@ -118,6 +117,7 @@ public class Main extends Application {
         observacionesOficio=(TextArea) scene.lookup("#observacionesOficio");
         editarOficio=(Button) scene.lookup("#editarOficio");
         eliminarOficio=(Button)scene.lookup("#eliminarOficio");
+
         //variables departamentos
         departamentosDepartamento=(ListView) scene.lookup("#departamentosDepartamento");
         agregarNombreDepartamento=(TextField) scene.lookup("#agregarNombreDepartamento");
@@ -127,6 +127,7 @@ public class Main extends Application {
         editarEncargadoDepartamento=(TextField) scene.lookup("#editarEncargadoDepartamento");
         editarDepartamento=(Button) scene.lookup("#editarDepartamento");
         eliminarDepartamento=(Button) scene.lookup("#eliminarDepartamento");
+
         //variables remitentes
         remitentesRemitente=(ListView) scene.lookup("#remitentesRemitente");
         agregarNombreRemitente=(TextField) scene.lookup("#agregarNombreRemitente");
@@ -270,6 +271,8 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
+        MySQL db = new MySQL();
+        db.MySQLConnect();
         launch(args);
     }
 }
