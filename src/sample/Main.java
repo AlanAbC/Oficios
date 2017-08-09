@@ -33,16 +33,6 @@ public class Main extends Application {
     private Label remitentes;
     private Label estadisticas;
 
-    // Variables de los elementos del Pane Inicio
-    private TextField folioInicio;
-    private DatePicker fechaInicio;
-    private ComboBox<String> departamentoInicio;
-    private ComboBox remitenteInicio;
-    private TextArea descripcionInicio;
-    private TextArea observacionesInicio;
-    private Button archivoInicio;
-    private Button guardarInicio;
-
     // Variables de los elementos del Pane Oficio
     private ListView oficiosOficio;
     private TextField folioOficio;
@@ -79,8 +69,6 @@ public class Main extends Application {
     private ListView departamentosEstadistica;
     private ListView remitentesEstadistica;
 
-    //Declaracion objetos
-    private static DB db;
     @Override
     public void start(Stage primaryStage) throws Exception{
         // Obtencion del fxml principal
@@ -103,15 +91,6 @@ public class Main extends Application {
         departamentos=(Label)scene.lookup("#departamentos");
         remitentes=(Label)scene.lookup("#remitentes");
         estadisticas=(Label)scene.lookup("#estadisticas");
-
-        //variables inicio
-        folioInicio=(TextField) scene.lookup("#folioInicio");
-        fechaInicio=(DatePicker)scene.lookup("#fechaInicio");
-        departamentoInicio=(ComboBox) scene.lookup("#departamentoInicio");
-        remitenteInicio=(ComboBox) scene.lookup("#remitenteInicio");
-        descripcionInicio=(TextArea) scene.lookup("#descripcionInicio");
-        observacionesInicio=(TextArea) scene.lookup("#observacionesInicio");
-        guardarInicio=(Button) scene.lookup("#guardarInicio");
 
         //variables oficio
         oficiosOficio=(ListView)scene.lookup("#oficiosOficio");
@@ -162,9 +141,6 @@ public class Main extends Application {
 
         //Llamado de funcion over menu
         overMenu();
-
-        //Llenado combo departamentos
-        llenarComboDeartamentos();
     }
 
     public void accionMenu(){
@@ -278,28 +254,8 @@ public class Main extends Application {
     public void overBotones(){
 
     }
-    //Funcion para llenar comboBox Departamentos
-    public void llenarComboDeartamentos(){
-        ObservableList<String> options =
-                FXCollections.observableArrayList(
-                        "Option 1",
-                        "Option 2",
-                        "Option 3"
-                );
-        departamentoInicio.setItems(options);
-
-    }
 
     public static void main(String[] args) {
-        db = new DB();
-        ArrayList<Departamento> d = db.getDepartamentos();
-        for (Departamento dep: d) {
-            System.out.println(dep.getId() + "\n" + dep.getNombre() + "\n" + dep.getResponsable() + "\n");
-        }
-        ArrayList<Remitente> r = db.getRemitentes();
-        for (Remitente re: r) {
-            System.out.println(re.getId() + "\n" + re.getNombre() + "\n" + re.getResponsable() + "\n");
-        }
         launch(args);
     }
 }
