@@ -12,6 +12,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+
 public class Main extends Application {
 
     // Variables de los Pane
@@ -271,6 +273,15 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
+        DB bd = new DB();
+        ArrayList<Departamento> d = bd.getDepartamentos();
+        for (Departamento dep: d) {
+            System.out.println(dep.getId() + "\n" + dep.getNombre() + "\n" + dep.getResponsable() + "\n");
+        }
+        ArrayList<Remitente> r = bd.getRemitentes();
+        for (Remitente re: r) {
+            System.out.println(re.getId() + "\n" + re.getNombre() + "\n" + re.getResponsable() + "\n");
+        }
         launch(args);
     }
 }

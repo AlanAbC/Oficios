@@ -34,6 +34,25 @@ public class DB {
         }
     }
 
-
+    public ArrayList<Remitente> getRemitentes(){
+        try{
+            ArrayList<Remitente> remitentes = new ArrayList<>();
+            String query = "SELECT * FROM Remitentes";
+            con.comando = con.conexion.createStatement();
+            con.registro = con.comando.executeQuery(query);
+            while(con.registro.next()){
+                Remitente remitente = new Remitente();
+                remitente.setId(Integer.parseInt(con.registro.getString("res_id")));
+                remitente.setNombre(con.registro.getString("res_despartamento"));
+                remitente.setResponsable(con.registro.getString("res_responsable"));
+                remitentes.add(remitente);
+            }
+            return remitentes;
+        }catch(SQLException e){
+            System.out.println("Ocurrió el error: " + e);
+            ArrayList<Remitente> remitente = new ArrayList<>();
+            return remitente;
+        }
+    }
 
 }
