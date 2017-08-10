@@ -9,6 +9,7 @@ import javafx.scene.control.*;
 import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -83,7 +84,7 @@ public class ControllerAgregarOficio implements Initializable {
                 Departamento dep = departamentos.get(comboDep.getSelectionModel().getSelectedIndex());
                 Remitente rem = remitentes.get(comboRem.getSelectionModel().getSelectedIndex());
                 String folio = folioOficio.getText();
-                Date fecha = Date.valueOf(fechaOficio.getValue());
+                LocalDate fecha = fechaOficio.getValue();
                 String des = desOficio.getText();
                 String obs = obsOficio.getText();
 
@@ -97,19 +98,35 @@ public class ControllerAgregarOficio implements Initializable {
                 nuevoOficio.setRemitente(rem);
                 nuevoOficio.setDescripcion(des);
                 nuevoOficio.setObservaciones(obs);
-                nuevoOficio.setFechaRegistro(new java.util.Date());
+                nuevoOficio.setFechaRegistro(LocalDate.now(ZoneId.of( "America/Mexico_City")));
 
                 // Ingresar registro base de datos
+                String respuesta = db.setOficio(nuevoOficio);
 
                 // Comprobar registro correcto
+                if(respuesta.equals("1")){
+                    //Mensaje de insersion correcta
+                    Alert correcto = new Alert(Alert.AlertType.CONFIRMATION);
+                    correcto.setTitle("Correcto");
+                    correcto.setHeaderText("Operacion correcta");
+                    correcto.setContentText("Se guardo correctamente el oficio");
+                    correcto.showAndWait();
 
-                // Limpiar campos del formulario
-                comboDep.getSelectionModel().clearSelection();
-                comboRem.getSelectionModel().clearSelection();
-                fechaOficio.setValue(null);
-                folioOficio.setText("");
-                desOficio.clear();
-                obsOficio.clear();
+                    // Limpiar campos del formulario
+                    comboDep.getSelectionModel().clearSelection();
+                    comboRem.getSelectionModel().clearSelection();
+                    fechaOficio.setValue(null);
+                    folioOficio.setText("");
+                    desOficio.clear();
+                    obsOficio.clear();
+                }else{
+                    // Mensaje de error
+                    Alert error = new Alert(Alert.AlertType.ERROR);
+                    error.setTitle("Error");
+                    error.setHeaderText("No se pudo guardar el oficio");
+                    error.setContentText("Error: " + respuesta);
+                    error.showAndWait();
+                }
             }
         });
     }

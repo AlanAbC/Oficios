@@ -1,11 +1,12 @@
 package sample;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Oficio {
     private String folio;
-    private Date fechaOficio;
-    private Date fechaRegistro;
+    private LocalDate fechaOficio;
+    private LocalDate fechaRegistro;
     private String descripcion;
     private String observaciones;
     private Departamento departamento;
@@ -15,7 +16,7 @@ public class Oficio {
 
     }
 
-    public Oficio(String folio, Date fechaOficio, Date fechaRegistro, String descripcion, String observaciones, Departamento departamento, Remitente remitente) {
+    public Oficio(String folio, LocalDate fechaOficio, LocalDate fechaRegistro, String descripcion, String observaciones, Departamento departamento, Remitente remitente) {
         this.folio = folio;
         this.fechaOficio = fechaOficio;
         this.fechaRegistro = fechaRegistro;
@@ -33,19 +34,19 @@ public class Oficio {
         this.folio = folio;
     }
 
-    public Date getFechaOficio() {
+    public LocalDate getFechaOficio() {
         return fechaOficio;
     }
 
-    public void setFechaOficio(Date fechaOficio) {
+    public void setFechaOficio(LocalDate fechaOficio) {
         this.fechaOficio = fechaOficio;
     }
 
-    public Date getFechaRegistro() {
+    public LocalDate getFechaRegistro() {
         return fechaRegistro;
     }
 
-    public void setFechaRegistro(Date fechaRegistro) {
+    public void setFechaRegistro(LocalDate fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
     }
 

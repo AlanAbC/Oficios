@@ -1,7 +1,6 @@
 package sample;
 
-import java.sql.Connection;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class DB {
@@ -52,6 +51,30 @@ public class DB {
             System.out.println("Ocurrió el error: " + e);
             ArrayList<Remitente> remitente = new ArrayList<>();
             return remitente;
+        }
+    }
+
+    public String setOficio(Oficio oficio){
+        try{
+            String query = "INSERT INTO Oficios VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            PreparedStatement sentencia = con.conexion.prepareStatement(query);
+            sentencia.setDate(1, Date.valueOf(oficio.getFechaOficio()));
+            sentencia.setDate(2, Date.valueOf(oficio.getFechaRegistro()));
+            sentencia.setString(3, "");
+            sentencia.setString(4, oficio.getDescripcion());
+            sentencia.setString(5, oficio.getFolio());
+            sentencia.setString(6, oficio.getObservaciones());
+            sentencia.setString(7, "");
+            sentencia.setInt(8, oficio.getDepartamento().getId());
+            sentencia.setInt(9, oficio.getRemitente().getId());
+            int columnasInsertadas = sentencia.executeUpdate();
+            if(columnasInsertadas > 0){
+                return "1";
+            }else{
+                return "Se insertaron " + columnasInsertadas + " registros";
+            }
+        }catch(SQLException e){
+            return e.toString();
         }
     }
 
