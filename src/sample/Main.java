@@ -1,8 +1,6 @@
 package sample;
 
 import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
@@ -14,9 +12,10 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-import java.util.ArrayList;
-
 public class Main extends Application {
+
+    // Variable de base de datos
+    public static DB db;
 
     // Variables de los Pane
     private Pane contenedor;
@@ -32,42 +31,6 @@ public class Main extends Application {
     private Label departamentos;
     private Label remitentes;
     private Label estadisticas;
-
-    // Variables de los elementos del Pane Oficio
-    private ListView oficiosOficio;
-    private TextField folioOficio;
-    private DatePicker fechaOficio;
-    private ComboBox departamentoOficio;
-    private ComboBox remitenteOficio;
-    private TextArea descripcionOficio;
-    private TextArea observacionesOficio;
-    private Button editarOficio;
-    private Button eliminarOficio;
-
-    // Variables de los elementos del Pane Departamento
-    private ListView departamentosDepartamento;
-    private TextField agregarNombreDepartamento;
-    private TextField agregarEncargadoDepartamento;
-    private Button agregarDepartamento;
-    private TextField editarNombreDepartamento;
-    private TextField editarEncargadoDepartamento;
-    private Button editarDepartamento;
-    private Button eliminarDepartamento;
-
-    // Variables de los elementos del Pane Remitentes
-    private ListView remitentesRemitente;
-    private TextField agregarNombreRemitente;
-    private TextField agregarEncargadoRemitente;
-    private Button agregarRemitente;
-    private TextField editarNombreRemitente;
-    private TextField editarEncargadoRemitente;
-    private Button editarRemitente;
-    private Button eliminarRemitente;
-
-    // Variables de los elementos del Pane Estadisticas
-    private DatePicker filtroEstadistica;
-    private ListView departamentosEstadistica;
-    private ListView remitentesEstadistica;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -91,37 +54,6 @@ public class Main extends Application {
         departamentos=(Label)scene.lookup("#departamentos");
         remitentes=(Label)scene.lookup("#remitentes");
         estadisticas=(Label)scene.lookup("#estadisticas");
-
-        //variables oficio
-        oficiosOficio=(ListView)scene.lookup("#oficiosOficio");
-        folioOficio=(TextField) scene.lookup("#folioOficio");
-        fechaOficio=(DatePicker) scene.lookup("#fechaOficio");
-        departamentoOficio=(ComboBox) scene.lookup("#departamentoOficio");
-        remitenteOficio=(ComboBox) scene.lookup("#remitenteOficio");
-        descripcionOficio=(TextArea) scene.lookup("#descripcionOficio");
-        observacionesOficio=(TextArea) scene.lookup("#observacionesOficio");
-        editarOficio=(Button) scene.lookup("#editarOficio");
-        eliminarOficio=(Button)scene.lookup("#eliminarOficio");
-
-        //variables departamentos
-        departamentosDepartamento=(ListView) scene.lookup("#departamentosDepartamento");
-        agregarNombreDepartamento=(TextField) scene.lookup("#agregarNombreDepartamento");
-        agregarEncargadoDepartamento=(TextField) scene.lookup("#agregarEncargadoDepartamento");
-        agregarDepartamento=(Button) scene.lookup("#agregarDepartamento");
-        editarNombreDepartamento=(TextField) scene.lookup("#editarNombreDepartamento");
-        editarEncargadoDepartamento=(TextField) scene.lookup("#editarEncargadoDepartamento");
-        editarDepartamento=(Button) scene.lookup("#editarDepartamento");
-        eliminarDepartamento=(Button) scene.lookup("#eliminarDepartamento");
-
-        //variables remitentes
-        remitentesRemitente=(ListView) scene.lookup("#remitentesRemitente");
-        agregarNombreRemitente=(TextField) scene.lookup("#agregarNombreRemitente");
-        agregarEncargadoRemitente=(TextField) scene.lookup("#agregarEncargadoRemitente");
-        agregarRemitente=(Button) scene.lookup("#agregarRemitente");
-        editarNombreRemitente=(TextField) scene.lookup("#editarNombreRemitente");
-        editarEncargadoRemitente=(TextField) scene.lookup("#editarEncargadoRemitente");
-        editarRemitente=(Button) scene.lookup("#editarRemitente");
-        eliminarRemitente=(Button) scene.lookup("#eliminarRemitente");
 
         //Llamado de paneles
         InicioPane=FXMLLoader.load(getClass().getResource("AgregarOficio.fxml"));
@@ -256,6 +188,7 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
+        db = new DB();
         launch(args);
     }
 }
