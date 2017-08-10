@@ -21,12 +21,12 @@
         <children>
             <TextField layoutX="35.0" layoutY="30.0" prefHeight="30.0" prefWidth="130.0" promptText="FOLIO" />
             <TextField layoutX="35.0" layoutY="90.0" prefHeight="30.0" prefWidth="280.0" promptText="DEPARTAMENTO" />
-            <Button layoutX="20.0" layoutY="450.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #111447;" text="EDITAR" textFill="WHITE" />
+            <Button layoutX="20.0" layoutY="450.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #111447;" text="EDITAR" textFill="WHITE" styleClass="hov"/>
          <TextField layoutX="35.0" layoutY="145.0" prefHeight="30.0" prefWidth="280.0" promptText="REMITENTE" />
          <TextArea layoutX="35.0" layoutY="200.0" prefHeight="100.0" prefWidth="280.0" promptText="DESCRIPCIÓN" />
-         <DatePicker layoutX="185.0" layoutY="30.0" prefHeight="30.0" prefWidth="130.0" promptText="FECHA" />
+         <DatePicker layoutX="185.0" layoutY="30.0" prefHeight="30.0" prefWidth="130.0" promptText="FECHA" styleClass="hov"/>
          <TextArea layoutX="35.0" layoutY="325.0" prefHeight="100.0" prefWidth="280.0" />
-         <Button layoutX="180.0" layoutY="450.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #111447;" text="ELIMINAR" textFill="WHITE" />
+         <Button layoutX="180.0" layoutY="450.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #111447;" text="ELIMINAR" textFill="WHITE" styleClass="hov"/>
         </children>
     </Pane>
 </Pane>

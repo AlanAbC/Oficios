@@ -44,7 +44,9 @@ public class Main extends Application {
 
         // Muestra de la Ventana inicial
         primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
         primaryStage.show();
+
 
         //Asignacion de variables
         contenedor=(Pane)scene.lookup("#contenedor");
