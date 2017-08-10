@@ -8,20 +8,21 @@ public class Oficio {
     private Date fechaRegistro;
     private String descripcion;
     private String observaciones;
-    private int idDepartamento;
-    private int idRemitente;
+    private Departamento departamento;
+    private Remitente remitente;
 
-    public Oficio(String folio, Date fechaOficio, Date fechaRegistro, String descripcion, String observaciones, int idDepartamento, int idRemitente) {
+    public Oficio(){
+
+    }
+
+    public Oficio(String folio, Date fechaOficio, Date fechaRegistro, String descripcion, String observaciones, Departamento departamento, Remitente remitente) {
         this.folio = folio;
         this.fechaOficio = fechaOficio;
         this.fechaRegistro = fechaRegistro;
         this.descripcion = descripcion;
         this.observaciones = observaciones;
-        this.idDepartamento = idDepartamento;
-        this.idRemitente = idRemitente;
-    }
-    public Oficio(){
-
+        this.departamento = departamento;
+        this.remitente = remitente;
     }
 
     public String getFolio() {
@@ -64,19 +65,19 @@ public class Oficio {
         this.observaciones = observaciones;
     }
 
-    public int getIdDepartamento() {
-        return idDepartamento;
+    public Departamento getDepartamento() {
+        return departamento;
     }
 
-    public void setIdDepartamento(int idDepartamento) {
-        this.idDepartamento = idDepartamento;
+    public void setDepartamento(Departamento departamento) {
+        this.departamento = departamento;
     }
 
-    public int getIdRemitente() {
-        return idRemitente;
+    public Remitente getRemitente() {
+        return remitente;
     }
 
-    public void setIdRemitente(int idRemitente) {
-        this.idRemitente = idRemitente;
+    public void setRemitente(Remitente remitente) {
+        this.remitente = remitente;
     }
 }
