@@ -7,5 +7,12 @@
 .list-cell:filled:hover {
     -fx-background-color: #0093ff;
     -fx-text-fill: white;
-    -fx-cursor: wait;
+    -fx-cursor: hand;
+}
+.hov:hover{
+    -fx-cursor: hand;
+}
+.boton:hover {
+    -fx-background-color: white;
+    -fx-prompt-text-fill: #0093ff;
 }

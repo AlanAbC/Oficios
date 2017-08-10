@@ -30,7 +30,7 @@
                 </Label>
                 <ListView layoutX="25.0" layoutY="120.0" prefHeight="400.0" prefWidth="350.0" />
                 <ListView layoutX="425.0" layoutY="120.0" prefHeight="400.0" prefWidth="350.0" />
-                <DatePicker layoutX="600.0" layoutY="10.0" />
+                <DatePicker layoutX="600.0" layoutY="10.0" styleClass="hov"/>
             </children></Pane>
     </children>
 </Pane>

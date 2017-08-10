@@ -18,15 +18,15 @@
       <children>
          <TextField fx:id="nombreNuevo" layoutX="35.0" layoutY="30.0" prefHeight="30.0" prefWidth="280.0" promptText="NOMBRE" />
          <TextField fx:id="encargadoNuevo" layoutX="35.0" layoutY="90.0" prefHeight="30.0" prefWidth="280.0" promptText="ENCARGADO" />
-         <Button fx:id="agregar" layoutX="35.0" layoutY="140.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="280.0" style="-fx-background-color: #111447;" text="AGREGAR" textFill="WHITE" />
+         <Button fx:id="agregar" layoutX="35.0" layoutY="140.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="280.0" style="-fx-background-color: #111447;" styleClass="hov" text="AGREGAR" textFill="WHITE" />
       </children>
    </Pane>
    <Pane layoutX="400.0" layoutY="290.0" prefHeight="200.0" prefWidth="350.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #111447;">
       <children>
          <TextField fx:id="nombreEditar" layoutX="35.0" layoutY="30.0" prefHeight="30.0" prefWidth="280.0" promptText="NOMBRE" />
          <TextField fx:id="encargadoEditar" layoutX="35.0" layoutY="90.0" prefHeight="30.0" prefWidth="280.0" promptText="ENCARGADO" />
-         <Button fx:id="editar" layoutX="15.0" layoutY="140.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" style="-fx-background-color: #111447;" text="EDITAR" textFill="WHITE" />
-         <Button fx:id="eliminar" layoutX="180.0" layoutY="140.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" style="-fx-background-color: #111447;" text="ELIMINAR" textFill="WHITE" />
+         <Button fx:id="editar" layoutX="15.0" layoutY="140.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" style="-fx-background-color: #111447;" text="EDITAR" textFill="WHITE" styleClass="hov" />
+         <Button fx:id="eliminar" layoutX="180.0" layoutY="140.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" style="-fx-background-color: #111447;" text="ELIMINAR" textFill="WHITE" styleClass="hov" />
       </children>
    </Pane>
 </Pane>
