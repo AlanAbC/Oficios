@@ -1,0 +1,11 @@
+
+.list-cell:even { /* <=== changed to even */
+    -fx-background-color: white;
+    -fx-text-fill: black;
+}
+
+.list-cell:filled:hover {
+    -fx-background-color: #0093ff;
+    -fx-text-fill: white;
+    -fx-cursor: wait;
+}

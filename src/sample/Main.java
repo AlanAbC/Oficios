@@ -40,6 +40,7 @@ public class Main extends Application {
 
         // Creacion de la ecena principal
         Scene scene = new Scene(root, 800, 600);
+        scene.getStylesheets().add(getClass().getResource("listStyle.css").toExternalForm());
 
         // Muestra de la Ventana inicial
         primaryStage.setScene(scene);

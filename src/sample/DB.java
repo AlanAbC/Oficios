@@ -15,7 +15,7 @@ public class DB {
     public ArrayList<Departamento> getDepartamentos(){
         try{
             ArrayList<Departamento> departamentos = new ArrayList<>();
-            String query = "SELECT * FROM Departamentos";
+            String query = "SELECT * FROM departamentos";
             con.comando = con.conexion.createStatement();
             con.registro = con.comando.executeQuery(query);
             while(con.registro.next()){
