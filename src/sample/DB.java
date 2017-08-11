@@ -78,4 +78,37 @@ public class DB {
         }
     }
 
+    public String setDepartamento(Departamento departamento){
+        try{
+            String query = "INSERT INTO Departamentos VALUES (default, ?, ?)";
+            PreparedStatement sentencia = con.conexion.prepareStatement(query);
+            sentencia.setString(1, departamento.getNombre());
+            sentencia.setString(2, departamento.getResponsable());
+            int columnasInsertadas = sentencia.executeUpdate();
+            if(columnasInsertadas > 0){
+                return "1";
+            }else{
+                return "Se insertaron " + columnasInsertadas + " registros";
+            }
+        }catch(SQLException e){
+            return e.toString();
+        }
+    }
+
+    public String setRemitentes(Remitente remitente){
+        try{
+            String query = "INSERT INTO Remitentes VALUES (default, ?, ?)";
+            PreparedStatement sentencia = con.conexion.prepareStatement(query);
+            sentencia.setString(1, remitente.getNombre());
+            sentencia.setString(2, remitente.getResponsable());
+            int columnasInsertadas = sentencia.executeUpdate();
+            if(columnasInsertadas > 0){
+                return "1";
+            }else{
+                return "Se insertaron " + columnasInsertadas + " registros";
+            }
+        }catch(SQLException e){
+            return e.toString();
+        }
+    }
 }

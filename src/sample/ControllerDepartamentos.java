@@ -72,11 +72,37 @@ public class ControllerDepartamentos implements Initializable{
                 alert.setContentText("Falta ingresar un responsable del departamento");
                 alert.showAndWait();
             }else{
+                // Creacion del nuevo objeto de departamento
                 Departamento nuevoDep = new Departamento();
                 nuevoDep.setNombre(nombreNuevo.getText());
                 nuevoDep.setResponsable(encargadoNuevo.getText());
 
+                // Insercion del nuevo departamento
+                String respuesta = Main.db.setDepartamento(nuevoDep);
 
+                // Comprobar registro correcto
+                if(respuesta.equals("1")){
+                    //Mensaje de insersion correcta
+                    Alert correcto = new Alert(Alert.AlertType.CONFIRMATION);
+                    correcto.setTitle("Correcto");
+                    correcto.setHeaderText("Operacion correcta");
+                    correcto.setContentText("Se guardo correctamente el departamento");
+                    correcto.showAndWait();
+
+                    // Limpiar campos del formulario
+                    nombreNuevo.setText("");
+                    encargadoNuevo.setText("");
+
+                    // Rellenar listview
+                    llenarList();
+                }else{
+                    // Mensaje de error
+                    Alert error = new Alert(Alert.AlertType.ERROR);
+                    error.setTitle("Error");
+                    error.setHeaderText("No se pudo guardar el departamento");
+                    error.setContentText("Error: " + respuesta);
+                    error.showAndWait();
+                }
             }
         });
     }
