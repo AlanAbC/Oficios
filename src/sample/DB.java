@@ -111,4 +111,37 @@ public class DB {
             return e.toString();
         }
     }
+    public String updateDepartamento(Departamento departamento){
+        try{
+            String query = "UPDATE Departamentos SET dep_nombre = ?, dep_responsable= ? WHERE dep_id = " + departamento.getId();
+            PreparedStatement sentencia = con.conexion.prepareStatement(query);
+            sentencia.setString(1, departamento.getNombre());
+            sentencia.setString(2, departamento.getResponsable());
+            int columnasInsertadas = sentencia.executeUpdate();
+            if(columnasInsertadas > 0){
+                return "1";
+            }else{
+                return "Se insertaron " + columnasInsertadas + " registros";
+            }
+        }catch(SQLException e){
+            return e.toString();
+        }
+    }
+
+    public String updateRemitentes(Remitente remitente){
+        try{
+            String query = "UPDATE Remitentes SET res_departamento = ?, res_responsable= ? WHERE res_id = " + remitente.getId();
+            PreparedStatement sentencia = con.conexion.prepareStatement(query);
+            sentencia.setString(1, remitente.getNombre());
+            sentencia.setString(2, remitente.getResponsable());
+            int columnasInsertadas = sentencia.executeUpdate();
+            if(columnasInsertadas > 0){
+                return "1";
+            }else{
+                return "Se insertaron " + columnasInsertadas + " registros";
+            }
+        }catch(SQLException e){
+            return e.toString();
+        }
+    }
 }
