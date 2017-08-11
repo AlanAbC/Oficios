@@ -111,12 +111,14 @@ public class DB {
             return e.toString();
         }
     }
+
     public String updateDepartamento(Departamento departamento){
         try{
-            String query = "UPDATE Departamentos SET dep_nombre = ?, dep_responsable= ? WHERE dep_id = " + departamento.getId();
+            String query = "UPDATE Departamentos SET dep_nombre = ?, dep_responsable = ? WHERE dep_id = ?";
             PreparedStatement sentencia = con.conexion.prepareStatement(query);
             sentencia.setString(1, departamento.getNombre());
             sentencia.setString(2, departamento.getResponsable());
+            sentencia.setInt(3, departamento.getId());
             int columnasInsertadas = sentencia.executeUpdate();
             if(columnasInsertadas > 0){
                 return "1";
@@ -128,12 +130,83 @@ public class DB {
         }
     }
 
+    public String deleteDepartamento(int id){
+        try{
+            String query = "DELETE FROM Departamentos WHERE dep_id = ?";
+            PreparedStatement sentencia = con.conexion.prepareStatement(query);
+            sentencia.setInt(1, id);
+            int columnasInsertadas = sentencia.executeUpdate();
+            if(columnasInsertadas > 0){
+                return "1";
+            }else{
+                return "Se insertaron " + columnasInsertadas + " registros";
+            }
+        }catch(SQLException e){
+            return e.toString();
+        }
+    }
+
+    public Departamento findByNameDepartamento(String nombre){
+        try{
+            String query = "SELECT * FROM departamentos WHERE dep_nombre = '" + nombre + "'";
+            con.comando = con.conexion.createStatement();
+            con.registro = con.comando.executeQuery(query);
+            Departamento departamento = new Departamento();
+            while(con.registro.next()){
+                departamento.setId(Integer.parseInt(con.registro.getString("dep_id")));
+                departamento.setNombre(con.registro.getString("dep_nombre"));
+                departamento.setResponsable(con.registro.getString("dep_responsable"));
+            }
+            return departamento;
+        }catch(SQLException e){
+            System.out.println("Ocurrió el error: " + e);
+            Departamento departamento = new Departamento();
+            return departamento;
+        }
+    }
+
+    public Departamento findByIdDepartamento(int id){
+        try{
+            String query = "SELECT * FROM departamentos WHERE dep_nombre = " + id;
+            con.comando = con.conexion.createStatement();
+            con.registro = con.comando.executeQuery(query);
+            Departamento departamento = new Departamento();
+            while(con.registro.next()){
+                departamento.setId(Integer.parseInt(con.registro.getString("dep_id")));
+                departamento.setNombre(con.registro.getString("dep_nombre"));
+                departamento.setResponsable(con.registro.getString("dep_responsable"));
+            }
+            return departamento;
+        }catch(SQLException e){
+            System.out.println("Ocurrió el error: " + e);
+            Departamento departamento = new Departamento();
+            return departamento;
+        }
+    }
+
     public String updateRemitentes(Remitente remitente){
         try{
-            String query = "UPDATE Remitentes SET res_departamento = ?, res_responsable= ? WHERE res_id = " + remitente.getId();
+            String query = "UPDATE Remitentes SET res_departamento = ?, res_responsable= ? WHERE res_id = ?";
             PreparedStatement sentencia = con.conexion.prepareStatement(query);
             sentencia.setString(1, remitente.getNombre());
             sentencia.setString(2, remitente.getResponsable());
+            sentencia.setInt(3, remitente.getId());
+            int columnasInsertadas = sentencia.executeUpdate();
+            if(columnasInsertadas > 0){
+                return "1";
+            }else{
+                return "Se insertaron " + columnasInsertadas + " registros";
+            }
+        }catch(SQLException e){
+            return e.toString();
+        }
+    }
+
+    public String deleteRemitente(int id){
+        try{
+            String query = "DELETE FROM Remitentes WHERE res_id = ?";
+            PreparedStatement sentencia = con.conexion.prepareStatement(query);
+            sentencia.setInt(1, id);
             int columnasInsertadas = sentencia.executeUpdate();
             if(columnasInsertadas > 0){
                 return "1";
