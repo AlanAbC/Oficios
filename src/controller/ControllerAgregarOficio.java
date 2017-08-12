@@ -1,8 +1,12 @@
-package sample;
+package controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import model.Departamento;
+import main.Main;
+import model.Oficio;
+import model.Remitente;
 
 import java.net.URL;
 import java.time.LocalDate;

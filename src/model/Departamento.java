@@ -1,18 +1,21 @@
-package sample;
+package model;
 
-public class Remitente {
+public class Departamento {
+
     private int id;
     private String nombre;
     private String responsable;
 
-    public Remitente(int id, String nombre, String responsable) {
+    public Departamento(){
+
+    }
+
+    public Departamento(int id, String nombre, String responsable) {
         this.id = id;
         this.nombre = nombre;
         this.responsable = responsable;
     }
-    public Remitente(){
 
-    }
     public int getId() {
         return id;
     }

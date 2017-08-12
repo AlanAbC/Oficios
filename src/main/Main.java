@@ -1,4 +1,4 @@
-package sample;
+package main;
 
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -11,6 +11,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import model.DB;
 
 public class Main extends Application {
 
@@ -35,12 +36,12 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         // Obtencion del fxml principal
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../view/layout/sample.fxml"));
         primaryStage.setTitle("Oficios");
 
         // Creacion de la ecena principal
         Scene scene = new Scene(root, 800, 600);
-        scene.getStylesheets().add(getClass().getResource("listStyle.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("../view/style/listStyle.css").toExternalForm());
 
         // Muestra de la Ventana inicial
         primaryStage.setScene(scene);
@@ -59,11 +60,11 @@ public class Main extends Application {
         estadisticas=(Label)scene.lookup("#estadisticas");
 
         //Llamado de paneles
-        InicioPane=FXMLLoader.load(getClass().getResource("AgregarOficio.fxml"));
-        oficioPane=FXMLLoader.load(getClass().getResource("Oficios.fxml"));
-        departamentoPane=FXMLLoader.load(getClass().getResource("Departamentos.fxml"));
-        remitentePane=FXMLLoader.load(getClass().getResource("Remitentes.fxml"));
-        estadisticaPane=FXMLLoader.load(getClass().getResource("Estadisticas.fxml"));
+        InicioPane=FXMLLoader.load(getClass().getResource("../view/layout/AgregarOficio.fxml"));
+        oficioPane=FXMLLoader.load(getClass().getResource("../view/layout/Oficios.fxml"));
+        departamentoPane=FXMLLoader.load(getClass().getResource("../view/layout/Departamentos.fxml"));
+        remitentePane=FXMLLoader.load(getClass().getResource("../view/layout/Remitentes.fxml"));
+        estadisticaPane=FXMLLoader.load(getClass().getResource("../view/layout/Estadisticas.fxml"));
 
 
         //Asignacion de panel principal

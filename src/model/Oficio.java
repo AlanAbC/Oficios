@@ -1,7 +1,6 @@
-package sample;
+package model;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class Oficio {
     private String folio;
