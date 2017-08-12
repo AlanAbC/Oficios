@@ -24,9 +24,9 @@
             <ComboBox fx:id="comboDep" layoutX="35.0" layoutY="90.0" prefHeight="30.0" prefWidth="280.0" promptText="DEPARTAMENTO" />
             <Button fx:id="editar" layoutX="20.0" layoutY="450.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #111447;" text="EDITAR" textFill="WHITE" styleClass="hov"/>
             <ComboBox fx:id="comboRem" layoutX="35.0" layoutY="145.0" prefHeight="30.0" prefWidth="280.0" promptText="REMITENTE" />
-            <TextArea fx:id="desOficio" layoutX="35.0" layoutY="200.0" prefHeight="100.0" prefWidth="280.0" promptText="DESCRIPCIÓN" />
+            <TextArea fx:id="desOficio" wrapText="true" layoutX="35.0" layoutY="200.0" prefHeight="100.0" prefWidth="280.0" promptText="DESCRIPCIÓN" />
             <DatePicker fx:id="fechaOficio" layoutX="185.0" layoutY="30.0" prefHeight="30.0" prefWidth="130.0" promptText="FECHA" styleClass="hov"/>
-            <TextArea fx:id="obsOficio" layoutX="35.0" layoutY="325.0" prefHeight="100.0" prefWidth="280.0" promptText="OBSERVACIONES" />
+            <TextArea fx:id="obsOficio" wrapText="true" layoutX="35.0" layoutY="325.0" prefHeight="100.0" prefWidth="280.0" promptText="OBSERVACIONES" />
             <Button fx:id="eliminar" layoutX="180.0" layoutY="450.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #111447;" text="ELIMINAR" textFill="WHITE" styleClass="hov"/>
         </children>
     </Pane>

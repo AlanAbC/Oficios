@@ -1,10 +1,6 @@
 package model;
 
-import com.sun.org.apache.regexp.internal.RE;
-
 import java.sql.*;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.ArrayList;
 
 public class DB {
@@ -60,17 +56,15 @@ public class DB {
 
     public String setOficio(Oficio oficio){
         try{
-            String query = "INSERT INTO Oficios VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String query = "INSERT INTO Oficios VALUES (?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement sentencia = con.conexion.prepareStatement(query);
             sentencia.setDate(1, Date.valueOf(oficio.getFechaOficio()));
             sentencia.setDate(2, Date.valueOf(oficio.getFechaRegistro()));
-            sentencia.setString(3, "");
-            sentencia.setString(4, oficio.getDescripcion());
-            sentencia.setString(5, oficio.getFolio());
-            sentencia.setString(6, oficio.getObservaciones());
-            sentencia.setString(7, "");
-            sentencia.setInt(8, oficio.getDepartamento().getId());
-            sentencia.setInt(9, oficio.getRemitente().getId());
+            sentencia.setString(3, oficio.getDescripcion());
+            sentencia.setString(4, oficio.getFolio());
+            sentencia.setString(5, oficio.getObservaciones());
+            sentencia.setInt(6, oficio.getDepartamento().getId());
+            sentencia.setInt(7, oficio.getRemitente().getId());
             int columnasInsertadas = sentencia.executeUpdate();
             if(columnasInsertadas > 0){
                 return "1";
@@ -283,6 +277,45 @@ public class DB {
             System.out.println("Ocurrió el error: " + e);
             ArrayList<Oficio> oficos = new ArrayList<>();
             return oficos;
+        }
+    }
+
+    public String deleteOficio(String folio){
+        try{
+            String query = "DELETE FROM Oficios WHERE of_folio = ?";
+            PreparedStatement sentencia = con.conexion.prepareStatement(query);
+            sentencia.setString(1, folio);
+            int columnasInsertadas = sentencia.executeUpdate();
+            if(columnasInsertadas > 0){
+                return "1";
+            }else{
+                return "Se insertaron " + columnasInsertadas + " registros";
+            }
+        }catch(SQLException e){
+            return e.toString();
+        }
+    }
+
+    public String updateOficio(Oficio oficio, String folioN){
+        try{
+            String query = "UPDATE Oficios SET of_fechaOficio = ?, of_descripcion = ?, " +
+                    "of_observaciones = ?, dep_id = ?, res_id = ?, of_folio = ? WHERE of_folio = ?";
+            PreparedStatement sentencia = con.conexion.prepareStatement(query);
+            sentencia.setDate(1, Date.valueOf(oficio.getFechaOficio()));
+            sentencia.setString(2, oficio.getDescripcion());
+            sentencia.setString(3, oficio.getObservaciones());
+            sentencia.setInt(4, oficio.getDepartamento().getId());
+            sentencia.setInt(5, oficio.getRemitente().getId());
+            sentencia.setString(6, folioN);
+            sentencia.setString(7, oficio.getFolio());
+            int columnasInsertadas = sentencia.executeUpdate();
+            if(columnasInsertadas > 0){
+                return "1";
+            }else{
+                return "Se insertaron " + columnasInsertadas + " registros";
+            }
+        }catch(SQLException e){
+            return e.toString();
         }
     }
 }
