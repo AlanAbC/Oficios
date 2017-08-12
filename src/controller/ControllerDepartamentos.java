@@ -224,10 +224,12 @@ public class ControllerDepartamentos implements Initializable{
         listDepartamentos.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                String[] depEnc = newValue.split(" ");
-                if(depEnc.length > 0) {
-                    departamentoEditar = Main.db.findByNameDepartamento(depEnc[0]);
-                    editarELiminar(departamentoEditar);
+                if(newValue != null) {
+                    String[] depEnc = newValue.split(" ");
+                    if (depEnc.length > 0) {
+                        departamentoEditar = Main.db.findByNameDepartamento(depEnc[0]);
+                        editarELiminar(departamentoEditar);
+                    }
                 }
             }
         });
