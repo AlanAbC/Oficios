@@ -180,7 +180,7 @@ public class ControllerOficio implements Initializable{
                     if (respuesta.equals("1")) {
 
                         //Mensaje de insersion correcta
-                        Alert correcto = new Alert(Alert.AlertType.INFORMATION);
+                        Alert correcto = new Alert(Alert.AlertType.CONFIRMATION);
                         correcto.setTitle("Correcto");
                         correcto.setHeaderText("Operacion correcta");
                         correcto.setContentText("Se actualizó correctamente el departamento");

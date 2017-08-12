@@ -225,10 +225,12 @@ public class ControllerDepartamentos implements Initializable{
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 if(newValue != null) {
-                    String[] depEnc = newValue.split(" ");
-                    if (depEnc.length > 0) {
-                        departamentoEditar = Main.db.findByNameDepartamento(depEnc[0]);
-                        editarELiminar(departamentoEditar);
+                    int index = listDepartamentos.getSelectionModel().getSelectedIndex();
+                    if (index >= 0) {
+                        if (departamentos.size() > 0) {
+                            departamentoEditar = departamentos.get(index);
+                            editarELiminar(departamentoEditar);
+                        }
                     }
                 }
             }
