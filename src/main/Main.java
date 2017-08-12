@@ -50,21 +50,21 @@ public class Main extends Application {
 
 
         //Asignacion de variables
-        contenedor=(Pane)scene.lookup("#contenedor");
+        contenedor = (Pane)scene.lookup("#contenedor");
 
         //variables menu
-        inicio=(Label)scene.lookup("#inicio");
-        oficios=(Label)scene.lookup("#oficios");
-        departamentos=(Label)scene.lookup("#departamentos");
-        remitentes=(Label)scene.lookup("#remitentes");
-        estadisticas=(Label)scene.lookup("#estadisticas");
+        inicio = (Label)scene.lookup("#inicio");
+        oficios = (Label)scene.lookup("#oficios");
+        departamentos = (Label)scene.lookup("#departamentos");
+        remitentes = (Label)scene.lookup("#remitentes");
+        estadisticas = (Label)scene.lookup("#estadisticas");
 
         //Llamado de paneles
-        InicioPane=FXMLLoader.load(getClass().getResource("../view/layout/AgregarOficio.fxml"));
-        oficioPane=FXMLLoader.load(getClass().getResource("../view/layout/Oficios.fxml"));
-        departamentoPane=FXMLLoader.load(getClass().getResource("../view/layout/Departamentos.fxml"));
-        remitentePane=FXMLLoader.load(getClass().getResource("../view/layout/Remitentes.fxml"));
-        estadisticaPane=FXMLLoader.load(getClass().getResource("../view/layout/Estadisticas.fxml"));
+        InicioPane = FXMLLoader.load(getClass().getResource("../view/layout/AgregarOficio.fxml"));
+        oficioPane = FXMLLoader.load(getClass().getResource("../view/layout/Oficios.fxml"));
+        departamentoPane = FXMLLoader.load(getClass().getResource("../view/layout/Departamentos.fxml"));
+        remitentePane = FXMLLoader.load(getClass().getResource("../view/layout/Remitentes.fxml"));
+        estadisticaPane = FXMLLoader.load(getClass().getResource("../view/layout/Estadisticas.fxml"));
 
 
         //Asignacion de panel principal
@@ -79,7 +79,7 @@ public class Main extends Application {
         overMenu();
     }
 
-    public void accionMenu(){
+    public void accionMenu() {
         inicio.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
