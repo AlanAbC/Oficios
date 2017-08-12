@@ -1,6 +1,10 @@
 package model;
 
+import com.sun.org.apache.regexp.internal.RE;
+
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 
 public class DB {
@@ -167,7 +171,7 @@ public class DB {
 
     public Departamento findByIdDepartamento(int id){
         try{
-            String query = "SELECT * FROM departamentos WHERE dep_nombre = " + id;
+            String query = "SELECT * FROM departamentos WHERE dep_id = " + id;
             con.comando = con.conexion.createStatement();
             con.registro = con.comando.executeQuery(query);
             Departamento departamento = new Departamento();
@@ -184,9 +188,47 @@ public class DB {
         }
     }
 
+    public Remitente findByNameRemitente(String nombre){
+        try{
+            String query = "SELECT * FROM remitentes WHERE res_nombre = '" + nombre + "'";
+            con.comando = con.conexion.createStatement();
+            con.registro = con.comando.executeQuery(query);
+            Remitente remitente = new Remitente();
+            while(con.registro.next()){
+                remitente.setId(Integer.parseInt(con.registro.getString("res_id")));
+                remitente.setNombre(con.registro.getString("res_despartamento"));
+                remitente.setResponsable(con.registro.getString("res_responsable"));
+            }
+            return remitente;
+        }catch(SQLException e){
+            System.out.println("Ocurrió el error: " + e);
+            Remitente remitente = new Remitente();
+            return remitente;
+        }
+    }
+
+    public Remitente findByIdRemitente(int id){
+        try{
+            String query = "SELECT * FROM remitentes WHERE res_id = " + id;
+            con.comando = con.conexion.createStatement();
+            con.registro = con.comando.executeQuery(query);
+            Remitente remitente = new Remitente();
+            while(con.registro.next()){
+                remitente.setId(Integer.parseInt(con.registro.getString("res_id")));
+                remitente.setNombre(con.registro.getString("res_despartamento"));
+                remitente.setResponsable(con.registro.getString("res_responsable"));
+            }
+            return remitente;
+        }catch(SQLException e){
+            System.out.println("Ocurrió el error: " + e);
+            Remitente remitente = new Remitente();
+            return remitente;
+        }
+    }
+
     public String updateRemitentes(Remitente remitente){
         try{
-            String query = "UPDATE Remitentes SET res_departamento = ?, res_responsable= ? WHERE res_id = ?";
+            String query = "UPDATE Remitentes SET res_despartamento = ?, res_responsable= ? WHERE res_id = ?";
             PreparedStatement sentencia = con.conexion.prepareStatement(query);
             sentencia.setString(1, remitente.getNombre());
             sentencia.setString(2, remitente.getResponsable());
@@ -215,6 +257,32 @@ public class DB {
             }
         }catch(SQLException e){
             return e.toString();
+        }
+    }
+
+    public ArrayList<Oficio> getOficios(){
+        try{
+            ArrayList<Oficio> oficios = new ArrayList<>();
+            String query = "SELECT * FROM Oficios";
+            con.comando = con.conexion.createStatement();
+            con.registro = con.comando.executeQuery(query);
+            while(con.registro.next()){
+                Oficio oficio = new Oficio();
+                int idRem = con.registro.getInt("res_id");
+                oficio.setFechaOficio(con.registro.getDate("of_fechaOficio").toLocalDate());
+                oficio.setFechaRegistro(con.registro.getDate("of_fechaRegistro").toLocalDate());
+                oficio.setDescripcion(con.registro.getString("of_descripcion"));
+                oficio.setFolio(con.registro.getString("of_folio"));
+                oficio.setObservaciones(con.registro.getString("of_observaciones"));
+                oficio.setDepartamento(findByIdDepartamento(con.registro.getInt("dep_id")));
+                oficio.setRemitente(findByIdRemitente(idRem));
+                oficios.add(oficio);
+            }
+            return oficios;
+        }catch(SQLException e){
+            System.out.println("Ocurrió el error: " + e);
+            ArrayList<Oficio> oficos = new ArrayList<>();
+            return oficos;
         }
     }
 }

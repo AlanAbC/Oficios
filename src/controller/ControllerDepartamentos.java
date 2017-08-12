@@ -245,7 +245,7 @@ public class ControllerDepartamentos implements Initializable{
         departamentos = Main.db.getDepartamentos();
         listDepartamentos.getItems().clear();
         for(Departamento d : departamentos) {
-            listDepartamentos.getItems().add(d.getNombre() + " - " + d.getResponsable());
+            listDepartamentos.getItems().add("Nombre: " + d.getNombre() + "\nResponsable: " + d.getResponsable());
         }
     }
 
