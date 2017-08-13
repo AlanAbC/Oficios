@@ -56,15 +56,16 @@ public class DB {
 
     public String setOficio(Oficio oficio){
         try{
-            String query = "INSERT INTO Oficios VALUES (?, ?, ?, ?, ?, ?, ?)";
+            String query = "INSERT INTO Oficios VALUES (?, ?, ?, ?, ?, ?, NULL , ?, ?)";
             PreparedStatement sentencia = con.conexion.prepareStatement(query);
             sentencia.setDate(1, Date.valueOf(oficio.getFechaOficio()));
             sentencia.setDate(2, Date.valueOf(oficio.getFechaRegistro()));
-            sentencia.setString(3, oficio.getDescripcion());
-            sentencia.setString(4, oficio.getFolio());
-            sentencia.setString(5, oficio.getObservaciones());
-            sentencia.setInt(6, oficio.getDepartamento().getId());
-            sentencia.setInt(7, oficio.getRemitente().getId());
+            sentencia.setString(3, oficio.getDepartamento().getNombre());
+            sentencia.setString(4, oficio.getDescripcion());
+            sentencia.setString(5, oficio.getFolio());
+            sentencia.setString(6, oficio.getObservaciones());
+            sentencia.setInt(7, oficio.getDepartamento().getId());
+            sentencia.setInt(8, oficio.getRemitente().getId());
             int columnasInsertadas = sentencia.executeUpdate();
             if(columnasInsertadas > 0){
                 return "1";
@@ -298,16 +299,17 @@ public class DB {
 
     public String updateOficio(Oficio oficio, String folioN){
         try{
-            String query = "UPDATE Oficios SET of_fechaOficio = ?, of_descripcion = ?, " +
+            String query = "UPDATE Oficios SET of_fechaOficio = ?, of_departamento = ?, of_descripcion = ?, " +
                     "of_observaciones = ?, dep_id = ?, res_id = ?, of_folio = ? WHERE of_folio = ?";
             PreparedStatement sentencia = con.conexion.prepareStatement(query);
             sentencia.setDate(1, Date.valueOf(oficio.getFechaOficio()));
-            sentencia.setString(2, oficio.getDescripcion());
-            sentencia.setString(3, oficio.getObservaciones());
-            sentencia.setInt(4, oficio.getDepartamento().getId());
-            sentencia.setInt(5, oficio.getRemitente().getId());
-            sentencia.setString(6, folioN);
+            sentencia.setString(2, oficio.getDepartamento().getNombre());
+            sentencia.setString(3, oficio.getDescripcion());
+            sentencia.setString(4, oficio.getObservaciones());
+            sentencia.setInt(5, oficio.getDepartamento().getId());
+            sentencia.setInt(6, oficio.getRemitente().getId());
             sentencia.setString(7, oficio.getFolio());
+            sentencia.setString(8, oficio.getFolio());
             int columnasInsertadas = sentencia.executeUpdate();
             if(columnasInsertadas > 0){
                 return "1";

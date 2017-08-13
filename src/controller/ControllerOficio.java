@@ -183,7 +183,7 @@ public class ControllerOficio implements Initializable{
                         Alert correcto = new Alert(Alert.AlertType.CONFIRMATION);
                         correcto.setTitle("Correcto");
                         correcto.setHeaderText("Operacion correcta");
-                        correcto.setContentText("Se actualizó correctamente el departamento");
+                        correcto.setContentText("Se actualizó correctamente el Oficio");
                         correcto.showAndWait();
 
                         // Limpiar campos del formulario
