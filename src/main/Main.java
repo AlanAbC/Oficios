@@ -106,6 +106,7 @@ public class Main extends Application {
             public void handle(MouseEvent event) {
                 contenedor.getChildren().remove(0);
                 contenedor.getChildren().add(estadisticaPane);
+
             }
         });
         remitentes.setOnMouseClicked(new EventHandler<MouseEvent>() {
