@@ -17,7 +17,6 @@ public class ControllerDepartamentos implements Initializable{
 
     // Declaracion de objetos y listas de onjetos
     //private DB db;
-    private ArrayList<Departamento> departamentos;
     private Departamento departamentoEditar;
 
     @FXML
@@ -227,8 +226,8 @@ public class ControllerDepartamentos implements Initializable{
                 if(newValue != null) {
                     int index = listDepartamentos.getSelectionModel().getSelectedIndex();
                     if (index >= 0) {
-                        if (departamentos.size() > 0) {
-                            departamentoEditar = departamentos.get(index);
+                        if (Main.arrayDepartamentos.size() > 0) {
+                            departamentoEditar = Main.arrayDepartamentos.get(index);
                             editarELiminar(departamentoEditar);
                         }
                     }
@@ -244,9 +243,9 @@ public class ControllerDepartamentos implements Initializable{
     }
 
     private void llenarList() {
-        departamentos = Main.db.getDepartamentos();
+        Main.arrayDepartamentos = Main.db.getDepartamentos();
         listDepartamentos.getItems().clear();
-        for(Departamento d : departamentos) {
+        for(Departamento d : Main.arrayDepartamentos) {
             listDepartamentos.getItems().add("Nombre: " + d.getNombre() + "\nResponsable: " + d.getResponsable());
         }
     }

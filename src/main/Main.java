@@ -12,11 +12,18 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import model.DB;
+import model.Departamento;
+import model.Remitente;
+
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class Main extends Application {
 
     // Variable de base de datos
     public static DB db;
+    public static ArrayList<Departamento> arrayDepartamentos;
+    public static ArrayList<Remitente> arrayRemitentes;
 
     // Variables de los Pane
     private Pane contenedor;
@@ -61,10 +68,10 @@ public class Main extends Application {
 
         //Llamado de paneles
         InicioPane = FXMLLoader.load(getClass().getResource("../view/layout/AgregarOficio.fxml"));
-        oficioPane = FXMLLoader.load(getClass().getResource("../view/layout/Oficios.fxml"));
-        departamentoPane = FXMLLoader.load(getClass().getResource("../view/layout/Departamentos.fxml"));
-        remitentePane = FXMLLoader.load(getClass().getResource("../view/layout/Remitentes.fxml"));
-        estadisticaPane = FXMLLoader.load(getClass().getResource("../view/layout/Estadisticas.fxml"));
+        //oficioPane = FXMLLoader.load(getClass().getResource("../view/layout/Oficios.fxml"));
+        //departamentoPane = FXMLLoader.load(getClass().getResource("../view/layout/Departamentos.fxml"));
+        //remitentePane = FXMLLoader.load(getClass().getResource("../view/layout/Remitentes.fxml"));
+        //estadisticaPane = FXMLLoader.load(getClass().getResource("../view/layout/Estadisticas.fxml"));
 
 
         //Asignacion de panel principal
@@ -83,37 +90,61 @@ public class Main extends Application {
         inicio.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                contenedor.getChildren().remove(0);
-                contenedor.getChildren().add(InicioPane);
+                try {
+                    InicioPane = FXMLLoader.load(getClass().getResource("../view/layout/AgregarOficio.fxml"));
+                    contenedor.getChildren().remove(0);
+                    contenedor.getChildren().add(InicioPane);
+                }catch (IOException e){
+                    System.out.println("Error: " + e.toString());
+                }
             }
         });
         oficios.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                contenedor.getChildren().remove(0);
-                contenedor.getChildren().add(oficioPane);
+                try {
+                    oficioPane = FXMLLoader.load(getClass().getResource("../view/layout/Oficios.fxml"));
+                    contenedor.getChildren().remove(0);
+                    contenedor.getChildren().add(oficioPane);
+                }catch(IOException e){
+                    System.out.println("Error: " + e.toString());
+                }
             }
         });
         departamentos.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                contenedor.getChildren().remove(0);
-                contenedor.getChildren().add(departamentoPane);
+                try {
+                    departamentoPane = FXMLLoader.load(getClass().getResource("../view/layout/Departamentos.fxml"));
+                    contenedor.getChildren().remove(0);
+                    contenedor.getChildren().add(departamentoPane);
+                }catch(IOException e){
+                    System.out.println("Error: " + e.toString());
+                }
             }
         });
         estadisticas.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                contenedor.getChildren().remove(0);
-                contenedor.getChildren().add(estadisticaPane);
-
+                try {
+                    estadisticaPane = FXMLLoader.load(getClass().getResource("../view/layout/Estadisticas.fxml"));
+                    contenedor.getChildren().remove(0);
+                    contenedor.getChildren().add(estadisticaPane);
+                }catch(IOException e){
+                    System.out.println("Error: " + e.toString());
+                }
             }
         });
         remitentes.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                contenedor.getChildren().remove(0);
-                contenedor.getChildren().add(remitentePane);
+                try {
+                    remitentePane = FXMLLoader.load(getClass().getResource("../view/layout/Remitentes.fxml"));
+                    contenedor.getChildren().remove(0);
+                    contenedor.getChildren().add(remitentePane);
+                }catch(IOException e){
+                    System.out.println("Error: " + e.toString());
+                }
             }
         });
     }

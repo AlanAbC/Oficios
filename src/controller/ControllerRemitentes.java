@@ -18,7 +18,6 @@ public class ControllerRemitentes implements Initializable {
 
     //Declaracion de objetos
     //Arraylist Remitentes
-    private ArrayList<Remitente> remitentes;
     private Remitente remitenteEditar;
 
     @FXML
@@ -102,6 +101,7 @@ public class ControllerRemitentes implements Initializable {
 
                     // Rellenar listview
                     llenarList();
+
                 }else{
                     // Mensaje de error
                     Alert error = new Alert(Alert.AlertType.ERROR);
@@ -228,8 +228,8 @@ public class ControllerRemitentes implements Initializable {
                 if(newValue != null) {
                     int index = listRemitentes.getSelectionModel().getSelectedIndex();
                     if (index >= 0) {
-                        if (remitentes.size() > 0) {
-                            remitenteEditar= remitentes.get(index);
+                        if (Main.arrayRemitentes.size() > 0) {
+                            remitenteEditar= Main.arrayRemitentes.get(index);
                             editarELiminar(remitenteEditar);
                         }
                     }
@@ -245,9 +245,9 @@ public class ControllerRemitentes implements Initializable {
     }
 
     private void llenarList() {
-        remitentes = Main.db.getRemitentes();
+        Main.arrayRemitentes = Main.db.getRemitentes();
         listRemitentes.getItems().clear();
-        for(Remitente r : remitentes) {
+        for(Remitente r : Main.arrayRemitentes) {
             listRemitentes.getItems().add("Nombre: " + r.getNombre() + "\nResponsable: " + r.getResponsable());
         }
     }
@@ -265,4 +265,5 @@ public class ControllerRemitentes implements Initializable {
         nombreEditar.setDisable(false);
         encargadoEditar.setDisable(false);
     }
+
 }
