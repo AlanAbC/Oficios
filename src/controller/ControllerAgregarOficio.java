@@ -16,6 +16,10 @@ import java.util.ResourceBundle;
 
 public class ControllerAgregarOficio implements Initializable {
 
+    // Declaracion de objetos
+    private ArrayList<Departamento> arrayDepartamentos;
+    private ArrayList<Remitente> arrayRemitentes;
+
     @FXML
     private ComboBox<String> comboDep;
 
@@ -74,8 +78,8 @@ public class ControllerAgregarOficio implements Initializable {
                 alert.showAndWait();
             }else{
                 //Obtencion de valores
-                Departamento dep = Main.arrayDepartamentos.get(comboDep.getSelectionModel().getSelectedIndex());
-                Remitente rem = Main.arrayRemitentes.get(comboRem.getSelectionModel().getSelectedIndex());
+                Departamento dep = arrayDepartamentos.get(comboDep.getSelectionModel().getSelectedIndex());
+                Remitente rem = arrayRemitentes.get(comboRem.getSelectionModel().getSelectedIndex());
                 String folio = folioOficio.getText();
                 LocalDate fecha = fechaOficio.getValue();
                 String des = desOficio.getText();
@@ -125,17 +129,17 @@ public class ControllerAgregarOficio implements Initializable {
     }
 
     private void loadComboDep(){
-        Main.arrayDepartamentos = Main.db.getDepartamentos();
+        arrayDepartamentos = Main.db.getDepartamentos();
         comboDep.getItems().clear();
-        for(Departamento d : Main.arrayDepartamentos) {
+        for(Departamento d : arrayDepartamentos) {
             comboDep.getItems().add(d.getNombre());
         }
     }
 
     private void loadComboRem(){
-        Main.arrayRemitentes = Main.db.getRemitentes();
+        arrayRemitentes = Main.db.getRemitentes();
         comboRem.getItems().clear();
-        for(Remitente r : Main.arrayRemitentes) {
+        for(Remitente r : arrayRemitentes) {
             comboRem.getItems().add(r.getNombre());
         }
     }

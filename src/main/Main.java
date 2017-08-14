@@ -22,8 +22,6 @@ public class Main extends Application {
 
     // Variable de base de datos
     public static DB db;
-    public static ArrayList<Departamento> arrayDepartamentos;
-    public static ArrayList<Remitente> arrayRemitentes;
 
     // Variables de los Pane
     private Pane contenedor;

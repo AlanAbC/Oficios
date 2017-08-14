@@ -4,7 +4,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import main.Main;
+import model.Departamento;
 import model.Estadistica;
+import model.Remitente;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -16,6 +18,8 @@ import java.util.ResourceBundle;
 public class ControllerEstadistica implements Initializable{
 
     //Declaración de objetos
+    private ArrayList<Departamento> arrayDepartamentos;
+    private ArrayList<Remitente> arrayRemitentes;
     private ArrayList<Estadistica> estadisticas;
 
     @FXML

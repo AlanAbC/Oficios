@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import model.Departamento;
 import main.Main;
+import model.Remitente;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -17,6 +18,8 @@ public class ControllerDepartamentos implements Initializable{
 
     // Declaracion de objetos y listas de onjetos
     //private DB db;
+    private ArrayList<Departamento> arrayDepartamentos;
+    private ArrayList<Remitente> arrayRemitentes;
     private Departamento departamentoEditar;
 
     @FXML
@@ -226,8 +229,8 @@ public class ControllerDepartamentos implements Initializable{
                 if(newValue != null) {
                     int index = listDepartamentos.getSelectionModel().getSelectedIndex();
                     if (index >= 0) {
-                        if (Main.arrayDepartamentos.size() > 0) {
-                            departamentoEditar = Main.arrayDepartamentos.get(index);
+                        if (arrayDepartamentos.size() > 0) {
+                            departamentoEditar = arrayDepartamentos.get(index);
                             editarELiminar(departamentoEditar);
                         }
                     }
@@ -243,9 +246,9 @@ public class ControllerDepartamentos implements Initializable{
     }
 
     private void llenarList() {
-        Main.arrayDepartamentos = Main.db.getDepartamentos();
+        arrayDepartamentos = Main.db.getDepartamentos();
         listDepartamentos.getItems().clear();
-        for(Departamento d : Main.arrayDepartamentos) {
+        for(Departamento d : arrayDepartamentos) {
             listDepartamentos.getItems().add("Nombre: " + d.getNombre() + "\nResponsable: " + d.getResponsable());
         }
     }

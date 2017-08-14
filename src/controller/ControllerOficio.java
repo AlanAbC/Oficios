@@ -21,8 +21,8 @@ public class ControllerOficio implements Initializable{
 
     // Declaracion de objetos
     private ArrayList<Oficio> oficios;
-    private ArrayList<Departamento> departamentos;
-    private ArrayList<Remitente> remitentes;
+    private ArrayList<Departamento> arrayDepartamentos;
+    private ArrayList<Remitente> arrayRemitentes;
     private Oficio oficioEditar;
 
     @FXML
@@ -154,8 +154,8 @@ public class ControllerOficio implements Initializable{
                 if(result.get() == ButtonType.OK) {
 
                     //Obtencion de valores
-                    Departamento dep = departamentos.get(comboDep.getSelectionModel().getSelectedIndex());
-                    Remitente rem = remitentes.get(comboRem.getSelectionModel().getSelectedIndex());
+                    Departamento dep = arrayDepartamentos.get(comboDep.getSelectionModel().getSelectedIndex());
+                    Remitente rem = arrayRemitentes.get(comboRem.getSelectionModel().getSelectedIndex());
                     String folio = folioOficio.getText();
                     LocalDate fecha = fechaOficio.getValue();
                     String des = desOficio.getText();
@@ -262,17 +262,17 @@ public class ControllerOficio implements Initializable{
     }
 
     private void loadComboRem() {
-        remitentes = Main.db.getRemitentes();
+        arrayRemitentes = Main.db.getRemitentes();
         comboRem.getItems().clear();
-        for(Remitente r : remitentes) {
+        for(Remitente r : arrayRemitentes) {
             comboRem.getItems().add(r.getNombre());
         }
     }
 
     private void loadComboDep() {
-        departamentos = Main.db.getDepartamentos();
+        arrayDepartamentos = Main.db.getDepartamentos();
         comboDep.getItems().clear();
-        for(Departamento d : departamentos) {
+        for(Departamento d : arrayDepartamentos) {
             comboDep.getItems().add(d.getNombre());
         }
     }

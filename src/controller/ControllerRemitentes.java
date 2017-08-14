@@ -18,6 +18,8 @@ public class ControllerRemitentes implements Initializable {
 
     //Declaracion de objetos
     //Arraylist Remitentes
+    private ArrayList<Departamento> arrayDepartamentos;
+    private ArrayList<Remitente> arrayRemitentes;
     private Remitente remitenteEditar;
 
     @FXML
@@ -228,8 +230,9 @@ public class ControllerRemitentes implements Initializable {
                 if(newValue != null) {
                     int index = listRemitentes.getSelectionModel().getSelectedIndex();
                     if (index >= 0) {
-                        if (Main.arrayRemitentes.size() > 0) {
-                            remitenteEditar= Main.arrayRemitentes.get(index);
+                        System.out.println("");
+                        if (arrayRemitentes.size() > 0) {
+                            remitenteEditar = arrayRemitentes.get(index);
                             editarELiminar(remitenteEditar);
                         }
                     }
@@ -245,9 +248,9 @@ public class ControllerRemitentes implements Initializable {
     }
 
     private void llenarList() {
-        Main.arrayRemitentes = Main.db.getRemitentes();
+        arrayRemitentes = Main.db.getRemitentes();
         listRemitentes.getItems().clear();
-        for(Remitente r : Main.arrayRemitentes) {
+        for(Remitente r : arrayRemitentes) {
             listRemitentes.getItems().add("Nombre: " + r.getNombre() + "\nResponsable: " + r.getResponsable());
         }
     }
