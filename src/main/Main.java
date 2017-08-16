@@ -12,11 +12,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import model.DB;
-import model.Departamento;
-import model.Remitente;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class Main extends Application {
 

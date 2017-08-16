@@ -1,6 +1,7 @@
 package model;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class DB {
@@ -257,19 +258,27 @@ public class DB {
 
     public ArrayList<Oficio> getOficios() {
         try {
-            ArrayList<Oficio> oficios = new ArrayList<>();
+            ArrayList<Oficio> oficios = new ArrayList<Oficio>();
             String query = "SELECT * FROM Oficios";
+            con.comando.close();
             con.comando = con.conexion.createStatement();
             con.registro = con.comando.executeQuery(query);
-            while (con.registro.next()) {
+            con.registro.next();
+            while(con.registro.next()){
                 Oficio oficio = new Oficio();
-                int idRem = con.registro.getInt("res_id");
-                oficio.setFechaOficio(con.registro.getDate("of_fechaOficio").toLocalDate());
-                oficio.setFechaRegistro(con.registro.getDate("of_fechaRegistro").toLocalDate());
-                oficio.setDescripcion(con.registro.getString("of_descripcion"));
-                oficio.setFolio(con.registro.getString("of_folio"));
-                oficio.setObservaciones(con.registro.getString("of_observaciones"));
-                oficio.setDepartamento(findByIdDepartamento(con.registro.getInt("dep_id")));
+                String fechaOfi = con.registro.getString(1);
+                String fechaReg = con.registro.getString(2);
+                String descOfi = con.registro.getString(3);
+                String folioOfi = con.registro.getString(4);
+                String obsOfi = con.registro.getString(5);
+                int idRem = con.registro.getInt(6);
+                int idDep = con.registro.getInt(7);
+                oficio.setFechaOficio(LocalDate.parse(fechaOfi));
+                oficio.setFechaRegistro(LocalDate.parse(fechaReg));
+                oficio.setDescripcion(descOfi);
+                oficio.setFolio(folioOfi);
+                oficio.setObservaciones(obsOfi);
+                oficio.setDepartamento(findByIdDepartamento(idDep));
                 oficio.setRemitente(findByIdRemitente(idRem));
                 oficios.add(oficio);
             }
@@ -299,17 +308,16 @@ public class DB {
 
     public String updateOficio(Oficio oficio, String folioN) {
         try {
-            String query = "UPDATE Oficios SET of_fechaOficio = ?, of_departamento = ?, of_descripcion = ?, " +
+            String query = "UPDATE Oficios SET of_fechaOficio = ?, of_descripcion = ?, " +
                     "of_observaciones = ?, dep_id = ?, res_id = ?, of_folio = ? WHERE of_folio = ?";
             PreparedStatement sentencia = con.conexion.prepareStatement(query);
             sentencia.setDate(1, Date.valueOf(oficio.getFechaOficio()));
-            sentencia.setString(2, oficio.getDepartamento().getNombre());
-            sentencia.setString(3, oficio.getDescripcion());
-            sentencia.setString(4, oficio.getObservaciones());
-            sentencia.setInt(5, oficio.getDepartamento().getId());
-            sentencia.setInt(6, oficio.getRemitente().getId());
+            sentencia.setString(2, oficio.getDescripcion());
+            sentencia.setString(3, oficio.getObservaciones());
+            sentencia.setInt(4, oficio.getDepartamento().getId());
+            sentencia.setInt(5, oficio.getRemitente().getId());
+            sentencia.setString(6, oficio.getFolio());
             sentencia.setString(7, oficio.getFolio());
-            sentencia.setString(8, oficio.getFolio());
             int columnasInsertadas = sentencia.executeUpdate();
             if (columnasInsertadas > 0) {
                 return "1";
