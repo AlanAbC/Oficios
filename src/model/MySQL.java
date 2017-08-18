@@ -10,9 +10,9 @@ public class MySQL {
 
     public Connection MySQLConnect(){
         try{
-            Class.forName("com.mysql.jdbc.Driver");
-            String servidor = "jdbc:mysql://localhost:3306/oficios";
-            String user = "root";
+            Class.forName("org.postgresql.Driver");
+            String servidor = "jdbc:postgresql://localhost:5432/oficios";
+            String user = "postgres";
             String pass = "";
             conexion = DriverManager.getConnection(servidor, user, pass);
         }catch (ClassNotFoundException ex) {
