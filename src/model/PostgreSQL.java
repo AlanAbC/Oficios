@@ -10,7 +10,7 @@ public class PostgreSQL {
         try{
             Class.forName("org.postgresql.Driver");
             String db = "jdbc:postgresql://localhost:5432/oficios";
-            String usr = "";
+            String usr = "postgres";
             String pass = "";
         }catch(Exception e){
             System.out.println("Error: " + e.toString());
