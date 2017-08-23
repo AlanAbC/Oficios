@@ -209,7 +209,8 @@ public class ControllerOficio implements Initializable{
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 int index = listaOficios.getSelectionModel().getSelectedIndex();
-                if(index <= 0) {
+                System.out.println(index);
+                if(index >= 0) {
                     if (oficios.size() > 0) {
                         oficioEditar = oficios.get(index);
                         editarEliminar();

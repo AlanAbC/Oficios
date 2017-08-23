@@ -17,7 +17,7 @@ public class DB {
     public ArrayList<Departamento> getDepartamentos() {
         try {
             ArrayList<Departamento> departamentos = new ArrayList<>();
-            String query = "SELECT * FROM departamentos";
+            String query = "SELECT * FROM departamentos ORDER BY dep_nombre ASC";
             Statement stm = conexion.createStatement();
             ResultSet rs = stm.executeQuery(query);
             while (rs.next()) {
@@ -39,7 +39,7 @@ public class DB {
     public ArrayList<Remitente> getRemitentes() {
         try {
             ArrayList<Remitente> remitentes = new ArrayList<>();
-            String query = "SELECT * FROM Remitentes";
+            String query = "SELECT * FROM Remitentes ORDER BY res_despartamento ASC";
             Statement stm = conexion.createStatement();
             ResultSet rs = stm.executeQuery(query);
             while (rs.next()) {
@@ -271,18 +271,18 @@ public class DB {
     public ArrayList<Oficio> getOficios() {
         try {
             ArrayList<Oficio> oficios = new ArrayList<Oficio>();
-            String query = "SELECT * FROM Oficios";
+            String query = "SELECT * FROM Oficios ORDER BY of_fechaOficio DESC";
             Statement stm = conexion.createStatement();
             ResultSet rs = stm.executeQuery(query);
             while(rs.next()){
                 Oficio oficio = new Oficio();
-                String fechaOfi = rs.getString(1);
-                String fechaReg = rs.getString(2);
-                String descOfi = rs.getString(3);
-                String folioOfi = rs.getString(4);
-                String obsOfi = rs.getString(5);
-                int idRem = rs.getInt(6);
-                int idDep = rs.getInt(7);
+                String fechaOfi = rs.getString("of_fechaOficio");
+                String fechaReg = rs.getString("of_fechaRegistro");
+                String descOfi = rs.getString("of_descripcion");
+                String folioOfi = rs.getString("of_folio");
+                String obsOfi = rs.getString("of_observaciones");
+                int idDep = rs.getInt("dep_id");
+                int idRem = rs.getInt("res_id");
                 oficio.setFechaOficio(LocalDate.parse(fechaOfi));
                 oficio.setFechaRegistro(LocalDate.parse(fechaReg));
                 oficio.setDescripcion(descOfi);
@@ -341,16 +341,20 @@ public class DB {
         }
     }
 
-    public ArrayList<Estadistica> estadisticasDep() {
+    public ArrayList<Estadistica> estadisticasDepInicial() {
         try {
             ArrayList<Estadistica> estDep = new ArrayList<>();
-            String query = "SELECT of_departamento AS DEPARTAMENTO, COUNT(*) AS '#FOLIOS' FROM oficios GROUP  BY dep_id";
+            String query = "SELECT Departamentos.dep_nombre as departamento, COUNT(*) AS total " +
+                    "FROM Oficios " +
+                    "INNER JOIN Departamentos ON Oficios.dep_id = Departamentos.dep_id " +
+                    "WHERE Oficios.of_fechaOficio " +
+                    "GROUP BY Oficios.dep_id";
             Statement stm = conexion.createStatement();
             ResultSet rs = stm.executeQuery(query);
             while (rs.next()) {
                 Estadistica estadistica = new Estadistica();
-                estadistica.setDepartamento(rs.getString("DEPARTAMENTO"));
-                estadistica.setNo_folios(rs.getInt("#FOLIOS"));
+                estadistica.setDepartamento(rs.getString("departamento"));
+                estadistica.setNo_folios(rs.getInt("total"));
                 estDep.add(estadistica);
             }
             rs.close();
@@ -363,17 +367,20 @@ public class DB {
         }
     }
 
-    public ArrayList<Estadistica> estadisticasRem() {
+    public ArrayList<Estadistica> estadisticasRemInicial() {
         try {
             ArrayList<Estadistica> estRem = new ArrayList<>();
-            String query = "SELECT r.res_despartamento AS REMITENTE, COUNT(*) AS '#FOLIOS' " +
-                    "FROM remitentes r, oficios o WHERE o.res_id = r.res_id GROUP BY o.res_id";
+            String query = "SELECT Remitentes.res_despartamento as remitente, COUNT(*) AS total " +
+                    "FROM Oficios " +
+                    "INNER JOIN Remitentes ON Oficios.res_id = Remitentes.res_id " +
+                    "WHERE Oficios.of_fechaOficio " +
+                    "GROUP BY Oficios.res_id";
             Statement stm = conexion.createStatement();
             ResultSet rs = stm.executeQuery(query);
             while (rs.next()) {
                 Estadistica estadistica = new Estadistica();
-                estadistica.setDepartamento(rs.getString("REMITENTE"));
-                estadistica.setNo_folios(rs.getInt("#FOLIOS"));
+                estadistica.setDepartamento(rs.getString("remitente"));
+                estadistica.setNo_folios(rs.getInt("total"));
                 estRem.add(estadistica);
             }
             rs.close();
@@ -386,14 +393,91 @@ public class DB {
         }
     }
 
-    public int est_total(){
+    public int est_totalInicial(){
         try {
             int total = 0;
-            String query = "SELECT COUNT(*) AS #FOLIOS FROM oficios ";
+            String query = "SELECT COUNT(*) AS total " +
+                    "FROM Oficios " +
+                    "WHERE Oficios.of_fechaOficio";
             Statement stm = conexion.createStatement();
             ResultSet rs = stm.executeQuery(query);
             while (rs.next()) {
-                total = rs.getInt("#FOLIOS");
+                total = rs.getInt("total");
+            }
+            rs.close();
+            stm.close();
+            return total;
+        } catch (SQLException e) {
+            System.out.println("Ocurrió el error: " + e);
+            return 0;
+        }
+    }
+
+    public ArrayList<Estadistica> estadisticasDepFiltro(LocalDate inicio, LocalDate fin) {
+        try {
+            ArrayList<Estadistica> estDep = new ArrayList<>();
+            String query = "SELECT Departamentos.dep_nombre as departamento, COUNT(*) AS total " +
+                    "FROM Oficios " +
+                    "INNER JOIN Departamentos ON Oficios.dep_id = Departamentos.dep_id " +
+                    "WHERE Oficios.of_fechaOficio BETWEEN '" + inicio.toString() + "' AND '" + fin.toString() + "' " +
+                    "GROUP BY Oficios.dep_id";
+            Statement stm = conexion.createStatement();
+            ResultSet rs = stm.executeQuery(query);
+            System.out.println(query);
+            while (rs.next()) {
+                Estadistica estadistica = new Estadistica();
+                estadistica.setDepartamento(rs.getString("departamento"));
+                estadistica.setNo_folios(rs.getInt("total"));
+                estDep.add(estadistica);
+            }
+            rs.close();
+            stm.close();
+            return estDep;
+        } catch (SQLException e) {
+            System.out.println("Ocurrió el error: " + e);
+            ArrayList<Estadistica> estDep= new ArrayList<>();
+            return estDep;
+        }
+    }
+
+    public ArrayList<Estadistica> estadisticasRemFiltro(LocalDate inicio, LocalDate fin) {
+        try {
+            ArrayList<Estadistica> estRem = new ArrayList<>();
+            String query = "SELECT Remitentes.res_despartamento as remitente, COUNT(*) AS total " +
+                    "FROM Oficios " +
+                    "INNER JOIN Remitentes ON Oficios.res_id = Remitentes.res_id " +
+                    "WHERE Oficios.of_fechaOficio  BETWEEN '" + inicio.toString() + "' AND '" + fin.toString() + "' " +
+                    "GROUP BY Oficios.res_id";
+            Statement stm = conexion.createStatement();
+            ResultSet rs = stm.executeQuery(query);
+            System.out.println(query);
+            while (rs.next()) {
+                Estadistica estadistica = new Estadistica();
+                estadistica.setDepartamento(rs.getString("remitente"));
+                estadistica.setNo_folios(rs.getInt("total"));
+                estRem.add(estadistica);
+            }
+            rs.close();
+            stm.close();
+            return estRem;
+        } catch (SQLException e) {
+            System.out.println("Ocurrió el error: " + e);
+            ArrayList<Estadistica> estRem = new ArrayList<>();
+            return estRem;
+        }
+    }
+
+    public int est_totalFiltro(LocalDate inicio, LocalDate fin){
+        try {
+            int total = 0;
+            String query = "SELECT COUNT(*) AS total " +
+                    "FROM Oficios " +
+                    "WHERE Oficios.of_fechaOficio BETWEEN '" + inicio.toString() + "' AND '" + fin.toString() + "'";
+            Statement stm = conexion.createStatement();
+            ResultSet rs = stm.executeQuery(query);
+            System.out.println(query);
+            while (rs.next()) {
+                total = rs.getInt("total");
             }
             rs.close();
             stm.close();
