@@ -423,7 +423,6 @@ public class DB {
                     "GROUP BY Oficios.dep_id";
             Statement stm = conexion.createStatement();
             ResultSet rs = stm.executeQuery(query);
-            System.out.println(query);
             while (rs.next()) {
                 Estadistica estadistica = new Estadistica();
                 estadistica.setDepartamento(rs.getString("departamento"));
@@ -450,7 +449,6 @@ public class DB {
                     "GROUP BY Oficios.res_id";
             Statement stm = conexion.createStatement();
             ResultSet rs = stm.executeQuery(query);
-            System.out.println(query);
             while (rs.next()) {
                 Estadistica estadistica = new Estadistica();
                 estadistica.setDepartamento(rs.getString("remitente"));
@@ -475,7 +473,6 @@ public class DB {
                     "WHERE Oficios.of_fechaOficio BETWEEN '" + inicio.toString() + "' AND '" + fin.toString() + "'";
             Statement stm = conexion.createStatement();
             ResultSet rs = stm.executeQuery(query);
-            System.out.println(query);
             while (rs.next()) {
                 total = rs.getInt("total");
             }
