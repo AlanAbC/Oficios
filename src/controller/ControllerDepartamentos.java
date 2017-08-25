@@ -82,8 +82,8 @@ public class ControllerDepartamentos implements Initializable{
             }else{
                 // Creacion del nuevo objeto de departamento
                 Departamento nuevoDep = new Departamento();
-                nuevoDep.setNombre(nombreNuevo.getText());
-                nuevoDep.setResponsable(encargadoNuevo.getText());
+                nuevoDep.setNombre(nombreNuevo.getText().toUpperCase());
+                nuevoDep.setResponsable(encargadoNuevo.getText().toUpperCase());
 
                 // Insercion del nuevo departamento
                 String respuesta = Main.db.setDepartamento(nuevoDep);
@@ -140,8 +140,8 @@ public class ControllerDepartamentos implements Initializable{
                     // Creacion del nuevo objeto de departamento
                     Departamento editarDep = new Departamento();
                     editarDep.setId(departamentoEditar.getId());
-                    editarDep.setNombre(nombreEditar.getText());
-                    editarDep.setResponsable(encargadoEditar.getText());
+                    editarDep.setNombre(nombreEditar.getText().toUpperCase());
+                    editarDep.setResponsable(encargadoEditar.getText().toUpperCase());
 
                     // Insercion del nuevo departamento
                     String respuesta = Main.db.updateDepartamento(editarDep);

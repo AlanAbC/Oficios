@@ -82,8 +82,8 @@ public class ControllerRemitentes implements Initializable {
             }else{
                 // Creacion del nuevo objeto de departamento
                 Remitente nuevoRem = new Remitente();
-                nuevoRem.setNombre(nombreNuevo.getText());
-                nuevoRem.setResponsable(encargadoNuevo.getText());
+                nuevoRem.setNombre(nombreNuevo.getText().toUpperCase());
+                nuevoRem.setResponsable(encargadoNuevo.getText().toUpperCase());
 
                 // Insercion del nuevo departamento
                 String respuesta = Main.db.setRemitentes(nuevoRem);
@@ -141,8 +141,8 @@ public class ControllerRemitentes implements Initializable {
                     // Creacion del nuevo objeto de departamento
                     Remitente editarRem = new Remitente();
                     editarRem.setId(remitenteEditar.getId());
-                    editarRem.setNombre(nombreEditar.getText());
-                    editarRem.setResponsable(encargadoEditar.getText());
+                    editarRem.setNombre(nombreEditar.getText().toUpperCase());
+                    editarRem.setResponsable(encargadoEditar.getText().toUpperCase());
 
                     // Insercion del nuevo departamento
                     String respuesta = Main.db.updateRemitentes(editarRem);
