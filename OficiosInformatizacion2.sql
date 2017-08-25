@@ -1,11 +1,9 @@
 CREATE TABLE Oficios (
 of_fechaOficio datetime NULL,
 of_fechaRegistro datetime NULL,
-of_departamento varchar(100) NULL,
 of_descripcion varchar(500) NULL,
 of_folio varchar(255) NOT NULL,
 of_observaciones varchar(500) NULL,
-of_pdf varchar(255) NULL,
 dep_id int(11) NULL,
 res_id int(11) NULL,
 PRIMARY KEY (of_folio) 
