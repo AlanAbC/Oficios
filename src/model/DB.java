@@ -61,16 +61,15 @@ public class DB {
 
     public String setOficio(Oficio oficio) {
         try {
-            String query = "INSERT INTO Oficios VALUES (?, ?, ?, ?, ?, ?, NULL , ?, ?)";
+            String query = "INSERT INTO Oficios VALUES (?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement sentencia = conexion.prepareStatement(query);
             sentencia.setDate(1, Date.valueOf(oficio.getFechaOficio()));
             sentencia.setDate(2, Date.valueOf(oficio.getFechaRegistro()));
-            sentencia.setString(3, oficio.getDepartamento().getNombre());
-            sentencia.setString(4, oficio.getDescripcion());
-            sentencia.setString(5, oficio.getFolio());
-            sentencia.setString(6, oficio.getObservaciones());
-            sentencia.setInt(7, oficio.getDepartamento().getId());
-            sentencia.setInt(8, oficio.getRemitente().getId());
+            sentencia.setString(3, oficio.getDescripcion());
+            sentencia.setString(4, oficio.getFolio());
+            sentencia.setString(5, oficio.getObservaciones());
+            sentencia.setInt(6, oficio.getDepartamento().getId());
+            sentencia.setInt(7, oficio.getRemitente().getId());
             int columnasInsertadas = sentencia.executeUpdate();
             if (columnasInsertadas > 0) {
                 return "1";
@@ -328,7 +327,7 @@ public class DB {
             sentencia.setString(3, oficio.getObservaciones());
             sentencia.setInt(4, oficio.getDepartamento().getId());
             sentencia.setInt(5, oficio.getRemitente().getId());
-            sentencia.setString(6, oficio.getFolio());
+            sentencia.setString(6, folioN);
             sentencia.setString(7, oficio.getFolio());
             int columnasInsertadas = sentencia.executeUpdate();
             if (columnasInsertadas > 0) {
